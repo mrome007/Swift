@@ -5,3 +5,6 @@ import Cocoa
 var str = "Hello, playground"
 str += "!"
 print(str)
+
+var lastName = "Romero"
+print(lastName)
