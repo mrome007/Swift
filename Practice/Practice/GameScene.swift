@@ -34,5 +34,16 @@ class GameScene: SKScene
         //So in this case, it refers to the GameScene instance.
         //similar to "this" in C# or C++???
         self.addChild(mySprite)
+        
+        //SpriteKit will tween to the new position over the couse of the duration,
+        //in this case 3 seconds.
+        let demoActionMove = SKAction.move(to: CGPoint(x: 300, y: 150), duration: 3)
+        //scales the sprite to 4 units in 5 seconds.
+        let demoActionScale = SKAction.scale(to: 4, duration: 5)
+        
+        //Tells our square node to execute its move action.
+        mySprite.run(demoActionMove)
+        //Tells our square node to execute its scale action.
+        mySprite.run(demoActionScale)
     }
 }
