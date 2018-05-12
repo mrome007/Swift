@@ -11,39 +11,84 @@ import GameplayKit
 
 class GameScene: SKScene
 {
+    //Create a constant cam as a SKCameraNode:
+    let cam = SKCameraNode()
+    
+    //Create our bee node as a property of GameScene so we can
+    //access it throughout the class
+    //(Make sure to remove the old bee declaration below)
+    let bee = SKSpriteNode()
+    
     override func didMove(to view: SKView)
     {
-        //Like Vector3.zero in unity. Make the scene positoin from its lower left
-        //corner, regardless of any other settings:
+        //Position from the lower left corner
         self.anchorPoint = .zero
         
-        //Instantiate a constant(let), mySprite, instance of SKSpriteNode
-        //The SKSpriteNode constructor can set color and size
-        //Note: UIColor is a UIKit class with bilt in color presets
-        //Note: CGSize is a type we use to set node sizes.
-        let mySprite = SKSpriteNode(color: .blue, size: CGSize(width: 50, height: 50))
+        //set the scene's background to a nice sky blue.
+        //Note: UIColor uses a scale from 0 to 1 for its colors
+        self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         
-        //Assign our sprite a position in points, relative to its
-        //parent node
-        mySprite.position = CGPoint(x: 150, y: 150)
+        //Assign the camera to the scene.
+        self.camera = cam
         
-        //Finally, we need to add our sprite node into the node tree.
-        //Call the SKScene's addChild function to add the node
-        //Note: In Swift, 'self' is an automatic property
-        //on any type instance, exactly equal to the instance itself
-        //So in this case, it refers to the GameScene instance.
-        //similar to "this" in C# or C++???
-        self.addChild(mySprite)
+        self.flyBee()
+    }
+    
+    override func didSimulatePhysics()
+    {
+        //Keep the camera centered on the bee
+        //Notice the ! operator after the camera. SKScene's camera
+        //is an optional, but we know it is there since we
+        //assigned it above in the didMove function. We can tell Swift
+        //that we know it can unwrap this value by using the
+        //! operator after the property name.
         
-        //SpriteKit will tween to the new position over the couse of the duration,
-        //in this case 3 seconds.
-        let demoActionMove = SKAction.move(to: CGPoint(x: 300, y: 150), duration: 3)
-        //scales the sprite to 4 units in 5 seconds.
-        let demoActionScale = SKAction.scale(to: 4, duration: 5)
+        self.camera?.position = bee.position
+    }
+    
+    func flyBee()
+    {
+        //size our bee node.
+        bee.size = CGSize(width: 28, height: 24)
+        //position our bee node.
+        bee.position = CGPoint(x: 250, y: 250)
+        //attach bee to the scene node's tree.
+        self.addChild(bee)
         
-        //Tells our square node to execute its move action.
-        mySprite.run(demoActionMove)
-        //Tells our square node to execute its scale action.
-        mySprite.run(demoActionScale)
+        //Find our new bee texture atlas
+        let beeAtlas = SKTextureAtlas(named: "Enemies")
+        
+        //Grab the two bee frames from the texture atlas in an array.
+        //Note: Check out the syntax explicitly declaring beeFrames
+        //as an array of SKTextures. This is not strictly necessary,
+        //but it makes the intent of the code more readable, so I
+        //chose to include the explicit type declaration here:
+        let beeFrames:[SKTexture] = [
+            beeAtlas.textureNamed("bee"),
+            beeAtlas.textureNamed("bee-fly")]
+        
+        //Create a new SKAction to animate between the frames once.
+        let flyAction = SKAction.animate(with: beeFrames, timePerFrame: 0.14)
+        
+        //Create an SKAction to run the flyAction repeatedly
+        let beeAction = SKAction.repeatForever(flyAction)
+        
+        bee.run(beeAction)
+        
+        //Move to the left
+        let beeMoveLeft = SKAction.moveBy(x: -200, y: -10, duration: 2)
+        //Move to the right
+        let beeMoveRight = SKAction.moveBy(x: 200, y: 10, duration: 2)
+        
+        //turns to the right
+        let beeFlipNegative = SKAction.scaleX(to: -1, duration: 0)
+        
+        //turns to the left.
+        let beeFlipPositive = SKAction.scale(to: 1, duration: 0)
+        
+        let beeFlightActions = SKAction.sequence([beeMoveLeft, beeFlipNegative, beeMoveRight, beeFlipPositive])
+        let beeFlightRepeated = SKAction.repeatForever(beeFlightActions)
+        
+        bee.run(beeFlightRepeated)
     }
 }
