@@ -36,25 +36,35 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eck-LG-QEH">
-                                <rect key="frame" x="316" y="106" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eck-LG-QEH">
+                                <rect key="frame" x="314" y="106" width="51" height="31"/>
+                                <connections>
+                                    <action selector="lockableSwitchChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="pE1-4W-sXh"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bSc-ap-hwU" secondAttribute="trailing" constant="67" id="0rs-ep-feI"/>
                             <constraint firstItem="WBc-rQ-eUc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="6cU-PC-6vl"/>
+                            <constraint firstItem="Eck-LG-QEH" firstAttribute="trailing" secondItem="bSc-ap-hwU" secondAttribute="trailing" constant="55" id="djW-vK-uwE"/>
                             <constraint firstItem="qe3-Yi-DIR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="fJd-Mg-7tg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WBc-rQ-eUc" secondAttribute="trailing" constant="10" id="gAP-0n-0GL"/>
                             <constraint firstItem="bSc-ap-hwU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="hDP-OE-4WD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qe3-Yi-DIR" secondAttribute="trailing" constant="10" id="lMC-Y4-Z9q"/>
                             <constraint firstItem="WBc-rQ-eUc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="48" id="pTO-vM-SjW"/>
+                            <constraint firstItem="Eck-LG-QEH" firstAttribute="top" secondItem="bSc-ap-hwU" secondAttribute="top" id="qg8-7Z-IIn"/>
                             <constraint firstItem="bSc-ap-hwU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="86" id="zN9-Xd-1R5"/>
                             <constraint firstItem="qe3-Yi-DIR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="znF-49-4Vc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="cashTextField" destination="WBc-rQ-eUc" id="hyG-G2-rlT"/>
+                        <outlet property="lockableSwitch" destination="Eck-LG-QEH" id="6Va-ol-ZMv"/>
+                        <outlet property="lockableTextField" destination="bSc-ap-hwU" id="Vk0-rj-lhn"/>
+                        <outlet property="zipCodeTextField" destination="qe3-Yi-DIR" id="fZB-6L-7ue"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
