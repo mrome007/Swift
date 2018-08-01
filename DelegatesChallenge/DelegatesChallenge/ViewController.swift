@@ -15,11 +15,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lockableTextField: UITextField!
     @IBOutlet weak var lockableSwitch: UISwitch!
     
+    let zipCodeDelegate = ZipCodeTextFieldDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.zipCodeTextField.delegate = zipCodeDelegate
+        self.zipCodeTextField.keyboardType = .numberPad
+        
+        self.cashTextField.keyboardType = .numberPad
         self.lockableTextField.delegate = self
     }
 
