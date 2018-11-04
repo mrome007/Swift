@@ -36,6 +36,21 @@ class StringLinkedList{
         }
     }
     
+    func at(index: Int) -> Character {
+        if index < 0 && index >= size() {
+            return " "
+        }
+        
+        var cur: Node! = head
+        var count = 0
+        while count < index {
+            count = count + 1
+            cur = cur.next
+        }
+        let result: Character = cur.data
+        return result
+    }
+    
     func size() -> Int {
         return listSize;
     }
@@ -57,5 +72,67 @@ class StringLinkedList{
             Swift.print(char)
             cur = cur.next
         }
+    }
+    
+    func pushFront(char: Character) {
+        let newNode = Node(dat: char)
+        if head == nil {
+            head = newNode;
+            tail = newNode
+        }
+        else {
+            newNode.next = head;
+            head = newNode
+        }
+    }
+    
+    func pushBack(char: Character) {
+        let newNode = Node(dat: char)
+        if(head == nil) {
+            head = newNode
+            tail = newNode
+        }
+        else {
+            tail.next = newNode
+            tail = newNode
+        }
+    }
+    
+    func popFront() {
+        if head == nil {
+            return
+        }
+        
+        if head === tail {
+            head = nil
+            tail = nil
+        }
+        else {
+            head = head.next
+        }
+    }
+    
+    func popBack() {
+        if head == nil {
+            return
+        }
+        
+        if head === tail {
+            head = nil
+            tail = nil
+            return
+        }
+        
+        var cur: Node! = head
+        while cur != nil {
+            if(cur.next === tail)
+            {
+                break
+            }
+            cur = cur.next
+        }
+        
+        cur.next = nil
+        tail = cur
     }
 }
