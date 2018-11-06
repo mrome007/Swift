@@ -20,8 +20,18 @@ word1.pushFront(char: "d")
 word1.pushBack(char: "x")
 word1.popFront()
 
-word1.print()
-
 print("")
 
-print(word.at(index: 2))
+word.insertAtIndex(index: 3, char: "z")
+word.insertAtIndex(index: 0, char: "z")
+word.insertAtIndex(index: 5, char: "z")
+word.print()
+
+print("")
+word.removeAtIndex(index: 0)
+word.removeAtIndex(index: 6)
+word.print()
+
+
+
+

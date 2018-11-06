@@ -135,4 +135,103 @@ class StringLinkedList{
         cur.next = nil
         tail = cur
     }
+    
+    func findIndex(char: Character) -> Int {
+        var result = 0
+        var cur: Node! = head
+        while cur != nil {
+            let c: Character = cur.data
+            if c == char {
+                break;
+            }
+            result = result + 1
+            cur = cur.next
+        }
+        
+        if cur == nil {
+            result = -1
+        }
+        
+        return result
+    }
+    
+    func findNode(char: Character) -> Node {
+        var cur: Node! = head
+        while cur != nil {
+            let c: Character = cur.data
+            if c == char {
+                break;
+            }
+            cur = cur.next
+        }
+        
+        return cur
+    }
+    
+    func insertAtIndex(index: Int, char: Character) {
+        if index < 0 {
+            return
+        }
+        
+        listSize = listSize + 1
+        let newNode = Node(dat: char)
+        //if index is greater insert at end of list.
+        if index >= size() {
+            if tail == nil {
+                head = newNode
+            }
+            else {
+                tail.next = newNode
+            }
+            tail = newNode
+            return
+        }
+        
+        var count = 0
+        var prev: Node! = nil
+        var cur: Node! = head
+        while cur != nil {
+            if count == index {
+                break
+            }
+            count = count + 1
+            prev = cur
+            cur = cur.next
+        }
+        
+        if prev == nil {
+            newNode.next = head
+            head = newNode
+        }
+        else {
+            newNode.next = prev.next
+            prev.next = newNode
+        }
+    }
+    
+    func removeAtIndex(index: Int) {
+        if index < 0 || index >= size() {
+            return
+        }
+        
+        listSize = listSize - 1
+        var count = 0
+        var prev: Node! = nil
+        var cur: Node! = head
+        while cur != nil {
+            if count == index {
+                break
+            }
+            count = count + 1
+            prev = cur
+            cur = cur.next
+        }
+        
+        if prev == nil {
+            head = head.next
+        }
+        else {
+            prev.next = cur.next
+        }
+    }
 }
