@@ -8,7 +8,7 @@
 
 import Foundation
 
-print("Hello, World!")
+print("=====================Linked List=====================")
 let word: StringLinkedList = StringLinkedList(word: "Hello")
 word.print()
 
@@ -32,6 +32,23 @@ word.removeAtIndex(index: 0)
 word.removeAtIndex(index: 6)
 word.print()
 
+print("=====================Stack=====================")
+let stk: StackLinkedList = StackLinkedList()
+stk.push(char: "M")
+stk.push(char: "i")
+stk.push(char: "c")
+stk.push(char: "h")
+stk.push(char: "a")
+stk.push(char: "e")
+stk.push(char: "l")
 
+print("Printing elements in the stack.")
+while !stk.empty() {
+    print(stk.pop())
+}
 
-
+print("Top of stack after pushing M")
+stk.push(char: "M")
+print(stk.top())
+stk.pop()
+stk.pop()
