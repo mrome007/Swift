@@ -50,5 +50,25 @@ while !stk.empty() {
 print("Top of stack after pushing M")
 stk.push(char: "M")
 print(stk.top())
-stk.pop()
-stk.pop()
+
+print("=====================Queue=====================")
+let que: QueueLinkedList = QueueLinkedList()
+que.enqueue(char: "M")
+que.enqueue(char: "i")
+que.enqueue(char: "c")
+que.enqueue(char: "h")
+que.enqueue(char: "a")
+que.enqueue(char: "e")
+que.enqueue(char: "l")
+
+print("Printing elements in the queue.")
+while !que.empty() {
+    print(que.dequeue())
+}
+
+print("Front of queue after pushing M")
+que.enqueue(char: "M")
+print(que.front())
+que.dequeue()
+que.dequeue()
+print(que.front())

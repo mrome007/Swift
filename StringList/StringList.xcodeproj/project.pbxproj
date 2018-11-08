@@ -11,6 +11,7 @@
 		9F519E32218E26A900428B38 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F519E31218E26A900428B38 /* Node.swift */; };
 		9F519E34218E27D500428B38 /* StringLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F519E33218E27D500428B38 /* StringLinkedList.swift */; };
 		9FDB7E0E2193DEE30011C43C /* StackLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDB7E0D2193DEE30011C43C /* StackLinkedList.swift */; };
+		9FDB7E102193E3F20011C43C /* QueueLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDB7E0F2193E3F20011C43C /* QueueLinkedList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		9F519E31218E26A900428B38 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		9F519E33218E27D500428B38 /* StringLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLinkedList.swift; sourceTree = "<group>"; };
 		9FDB7E0D2193DEE30011C43C /* StackLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackLinkedList.swift; sourceTree = "<group>"; };
+		9FDB7E0F2193E3F20011C43C /* QueueLinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueLinkedList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				9F519E31218E26A900428B38 /* Node.swift */,
 				9F519E33218E27D500428B38 /* StringLinkedList.swift */,
 				9FDB7E0D2193DEE30011C43C /* StackLinkedList.swift */,
+				9FDB7E0F2193E3F20011C43C /* QueueLinkedList.swift */,
 			);
 			path = StringList;
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 				9F519E34218E27D500428B38 /* StringLinkedList.swift in Sources */,
 				9FDB7E0E2193DEE30011C43C /* StackLinkedList.swift in Sources */,
 				9F519E2B218E243D00428B38 /* main.swift in Sources */,
+				9FDB7E102193E3F20011C43C /* QueueLinkedList.swift in Sources */,
 				9F519E32218E26A900428B38 /* Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
