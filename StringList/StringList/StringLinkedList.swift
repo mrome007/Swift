@@ -9,9 +9,9 @@
 import Foundation
 
 class StringLinkedList{
-    var listSize: Int!
-    var head: Node!
-    var tail: Node!
+    private var listSize: Int
+    private var head: Node?
+    private var tail: Node?
     
     init() {
         listSize = 0
@@ -25,12 +25,12 @@ class StringLinkedList{
             let index = word.index(word.startIndex, offsetBy: i)
             let newNode: Node = Node(dat: word[index])
             
-            if head == nil {
-                head = newNode
+            if let _ = head, let t = tail {
+                t.next = newNode
                 tail = newNode
             }
             else {
-                tail.next = newNode
+                head = newNode
                 tail = newNode
             }
         }
@@ -88,27 +88,28 @@ class StringLinkedList{
     
     func pushBack(char: Character) {
         let newNode = Node(dat: char)
-        if(head == nil) {
-            head = newNode
+        if let _ = head, let t = tail {
+            t.next = newNode
             tail = newNode
         }
         else {
-            tail.next = newNode
+            head = newNode
             tail = newNode
         }
     }
     
     func popFront() {
-        if head == nil {
-            return
-        }
-        
-        if head === tail {
-            head = nil
-            tail = nil
+        if let h = head {
+            if head === tail {
+                head = nil
+                tail = nil
+            }
+            else {
+                head = h.next
+            }
         }
         else {
-            head = head.next
+            return;
         }
     }
     
@@ -177,11 +178,11 @@ class StringLinkedList{
         let newNode = Node(dat: char)
         //if index is greater insert at end of list.
         if index >= size() {
-            if tail == nil {
-                head = newNode
+            if let t = tail {
+                t.next = newNode
             }
             else {
-                tail.next = newNode
+                head = newNode
             }
             tail = newNode
             return
@@ -228,7 +229,9 @@ class StringLinkedList{
         }
         
         if prev == nil {
-            head = head.next
+            if let h = head {
+                head = h.next
+            }
         }
         else {
             prev.next = cur.next
