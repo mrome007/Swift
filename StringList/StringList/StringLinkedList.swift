@@ -66,23 +66,23 @@ class StringLinkedList{
     }
     
     func print() {
-        var cur: Node! = head
-        while cur != nil {
-            let char: Character = cur.data
+        var cur = head
+        while let c = cur {
+            let char: Character = c.data
             Swift.print(char)
-            cur = cur.next
+            cur = c.next
         }
     }
     
     func pushFront(char: Character) {
         let newNode = Node(dat: char)
-        if head == nil {
-            head = newNode;
-            tail = newNode
+        if let _ = head {
+            newNode.next = head
+            head = newNode
         }
         else {
-            newNode.next = head;
-            head = newNode
+            head = newNode;
+            tail = newNode
         }
     }
     
@@ -114,56 +114,58 @@ class StringLinkedList{
     }
     
     func popBack() {
-        if head == nil {
-            return
+        if let _ = head, head !== tail {
+            var cur = head
+            while let c = cur {
+                if(c.next === tail)
+                {
+                    break
+                }
+                cur = c.next
+            }
+            
+            if let c = cur {
+                c.next = nil
+                tail = c
+            }
         }
-        
-        if head === tail {
+        else {
             head = nil
             tail = nil
             return
         }
-        
-        var cur: Node! = head
-        while cur != nil {
-            if(cur.next === tail)
-            {
-                break
-            }
-            cur = cur.next
-        }
-        
-        cur.next = nil
-        tail = cur
     }
     
     func findIndex(char: Character) -> Int {
         var result = 0
-        var cur: Node! = head
-        while cur != nil {
-            let c: Character = cur.data
-            if c == char {
+        var cur = head
+        while let c = cur {
+            let ch: Character = c.data
+            if ch == char {
                 break;
             }
             result = result + 1
-            cur = cur.next
+            cur = c.next
         }
         
-        if cur == nil {
+        if let _ = cur {
+            
+        }
+        else {
             result = -1
         }
         
         return result
     }
     
-    func findNode(char: Character) -> Node {
-        var cur: Node! = head
-        while cur != nil {
-            let c: Character = cur.data
-            if c == char {
+    func findNode(char: Character) -> Node? {
+        var cur = head
+        while let c = cur {
+            let ch: Character = c.data
+            if ch == char {
                 break;
             }
-            cur = cur.next
+            cur = c.next
         }
         
         return cur
@@ -189,24 +191,24 @@ class StringLinkedList{
         }
         
         var count = 0
-        var prev: Node! = nil
-        var cur: Node! = head
-        while cur != nil {
+        var prev: Node? = nil
+        var cur = head
+        while let c = cur {
             if count == index {
                 break
             }
             count = count + 1
-            prev = cur
-            cur = cur.next
+            prev = c
+            cur = c.next
         }
         
-        if prev == nil {
-            newNode.next = head
-            head = newNode
+        if let p = prev {
+            newNode.next = p.next
+            p.next = newNode
         }
         else {
-            newNode.next = prev.next
-            prev.next = newNode
+            newNode.next = head
+            head = newNode
         }
     }
     
@@ -217,24 +219,24 @@ class StringLinkedList{
         
         listSize = listSize - 1
         var count = 0
-        var prev: Node! = nil
-        var cur: Node! = head
-        while cur != nil {
+        var prev: Node? = nil
+        var cur = head
+        while let c = cur {
             if count == index {
                 break
             }
             count = count + 1
-            prev = cur
-            cur = cur.next
+            prev = c
+            cur = c.next
         }
         
-        if prev == nil {
+        if let p = prev, let c = cur {
+            p.next = c.next
+        }
+        else {
             if let h = head {
                 head = h.next
             }
-        }
-        else {
-            prev.next = cur.next
         }
     }
 }

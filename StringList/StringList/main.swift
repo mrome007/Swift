@@ -19,6 +19,8 @@ word1.pushFront(char: "c")
 word1.pushFront(char: "d")
 word1.pushBack(char: "x")
 word1.popFront()
+word1.popBack()
+word1.print()
 
 print("")
 
@@ -31,6 +33,7 @@ print("")
 word.removeAtIndex(index: 0)
 word.removeAtIndex(index: 6)
 word.print()
+print(word.findIndex(char: "y"))
 
 print("=====================Stack=====================")
 let stk: StackLinkedList = StackLinkedList()
