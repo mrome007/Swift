@@ -9,7 +9,7 @@
 import Foundation
 
 class StackLinkedList{
-    var head: Node!
+    var head: Node?
     
     init() {
         head = nil
@@ -17,31 +17,33 @@ class StackLinkedList{
     
     func push(char: Character) {
         let newNode = Node(dat: char)
-        if head == nil {
+        if let h = head {
+            newNode.next = h
             head = newNode
-            return
         }
-        
-        newNode.next = head
-        head = newNode
+        else {
+            head = newNode
+        }
     }
     
     func pop() -> Character {
-        if head == nil {
+        if let h = head {
+            let result: Character = h.data
+            head = h.next
+            return result
+        }
+        else {
             return " "
         }
-        
-        let result: Character = head.data
-        head = head.next
-        return result
     }
     
     func top() -> Character {
-        if head == nil {
+        if let h = head {
+            return h.data
+        }
+        else {
             return " "
         }
-        
-        return head.data
     }
     
     func empty() -> Bool {

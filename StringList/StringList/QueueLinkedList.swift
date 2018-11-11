@@ -9,8 +9,8 @@
 import Foundation
 
 class QueueLinkedList {
-    var head: Node!
-    var tail: Node!
+    var head: Node?
+    var tail: Node?
     
     init() {
         head = nil
@@ -19,38 +19,40 @@ class QueueLinkedList {
     
     func enqueue(char: Character) {
         let newNode = Node(dat: char)
-        if head == nil {
-            head = newNode
+        if let _ = head, let t = tail {
+            t.next = newNode
             tail = newNode
         }
         else {
-            tail.next = newNode
+            head = newNode
             tail = newNode
         }
     }
     
     func dequeue() -> Character {
-        if head == nil {
-            return " "
-        }
-        
-        let result: Character = head.data
-        if head === tail {
-            head = nil
-            tail = nil
+        if let h = head {
+            let result: Character = h.data
+            if head === tail {
+                head = nil
+                tail = nil
+            }
+            else {
+                head = h.next
+            }
+            return result
         }
         else {
-            head = head.next
+            return " "
         }
-        return result
     }
     
     func front() -> Character {
-        if head == nil {
-            return " "
+        if let h = head {
+            return h.data
         }
-        
-        return head.data
+        else {
+            return " "
+        }        
     }
     
     func empty() -> Bool {
