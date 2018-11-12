@@ -18,6 +18,7 @@ class GameScene: SKScene {
     // access it throughout the class.
     // (Make sure to remove the old bee declaration below)
     let bee = SKSpriteNode()
+    let ground = Ground()
     
     override func didMove(to view: SKView) {
         // Make the scene position from its lower left
@@ -33,6 +34,32 @@ class GameScene: SKScene {
         
         // Call the new bee function
         self.addTheFlyingBee()
+        
+        let bee2 = Bee()
+        bee2.position = CGPoint(x: 325, y: 325)
+        
+        let bee3 = Bee()
+        bee3.position = CGPoint(x: 200, y: 325)
+        
+        self.addChild(bee2)
+        self.addChild(bee3)
+        
+        // Position the ground based on the screen size.
+        // Position X: Negative on screen width
+        // Positoin Y: 150 above the bottom (remember the top left
+        // anchor point).
+        ground.position = CGPoint(x: -self.size.width * 2, y: 150)
+        
+        // Set the ground width to 3x the width of the screen
+        // The height can be 0, our child nodes will create the height
+        ground.size = CGSize(width: self.size.width * 6, height: 0)
+        
+        // Run the ground's createChildren function to build
+        // the child texture tiles:
+        ground.createChildren()
+        
+        // Add the ground node to the scene:
+        self.addChild(ground)
     }
     
     override func didSimulatePhysics() {
@@ -72,8 +99,8 @@ class GameScene: SKScene {
         bee.run(beeAction)
         
         // Set up new actions to move our bee back and forth:
-        let pathLeft = SKAction.moveBy(x: -200, y: -10, duration: 2)
-        let pathRight = SKAction.moveBy(x: 200, y: 10, duration: 2)
+        let pathLeft = SKAction.moveBy(x: -self.size.width, y: -10, duration: 2)
+        let pathRight = SKAction.moveBy(x: self.size.width, y: 10, duration: 2)
         
         // These two scaleX actions flip the texture back and forth
         // We will use these to turn the bee to face left and right

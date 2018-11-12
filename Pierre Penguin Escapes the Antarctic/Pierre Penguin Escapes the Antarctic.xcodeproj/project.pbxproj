@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F845ED42199353600B19C96 /* GameSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F845ED32199353600B19C96 /* GameSprite.swift */; };
+		9F845ED62199358100B19C96 /* Bee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F845ED52199358100B19C96 /* Bee.swift */; };
+		9F845ED82199384000B19C96 /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F845ED72199384000B19C96 /* Ground.swift */; };
 		9FF37B25219470550097BCDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF37B24219470550097BCDF /* AppDelegate.swift */; };
 		9FF37B27219470550097BCDF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9FF37B26219470550097BCDF /* GameScene.sks */; };
 		9FF37B29219470550097BCDF /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9FF37B28219470550097BCDF /* Actions.sks */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F845ED32199353600B19C96 /* GameSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSprite.swift; sourceTree = "<group>"; };
+		9F845ED52199358100B19C96 /* Bee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bee.swift; sourceTree = "<group>"; };
+		9F845ED72199384000B19C96 /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
 		9FF37B21219470550097BCDF /* Pierre Penguin Escapes the Antarctic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pierre Penguin Escapes the Antarctic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF37B24219470550097BCDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FF37B26219470550097BCDF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -69,6 +75,9 @@
 				9FF37B31219470560097BCDF /* Assets.xcassets */,
 				9FF37B33219470560097BCDF /* LaunchScreen.storyboard */,
 				9FF37B36219470560097BCDF /* Info.plist */,
+				9F845ED32199353600B19C96 /* GameSprite.swift */,
+				9F845ED52199358100B19C96 /* Bee.swift */,
+				9F845ED72199384000B19C96 /* Ground.swift */,
 			);
 			path = "Pierre Penguin Escapes the Antarctic";
 			sourceTree = "<group>";
@@ -146,6 +155,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F845ED82199384000B19C96 /* Ground.swift in Sources */,
+				9F845ED62199358100B19C96 /* Bee.swift in Sources */,
+				9F845ED42199353600B19C96 /* GameSprite.swift in Sources */,
 				9FF37B2B219470550097BCDF /* GameScene.swift in Sources */,
 				9FF37B2D219470550097BCDF /* GameViewController.swift in Sources */,
 				9FF37B25219470550097BCDF /* AppDelegate.swift in Sources */,
