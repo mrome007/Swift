@@ -11,6 +11,14 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    // Create a constant camera as a SKCameraNode:
+    let cam = SKCameraNode()
+    
+    // Create out bee node as a property of GameScene so we can
+    // access it throughout the class.
+    // (Make sure to remove the old bee declaration below)
+    let bee = SKSpriteNode()
+    
     override func didMove(to view: SKView) {
         // Make the scene position from its lower left
         // corner, regardless of any other settings:
@@ -20,9 +28,26 @@ class GameScene: SKScene {
         // Note: UIColor uses a scale from 0 to 1 for its colors
         self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         
+        // Assign the camera to the scene.
+        self.camera = cam
+        
+        // Call the new bee function
+        self.addTheFlyingBee()
+    }
+    
+    override func didSimulatePhysics() {
+        // Keep the camera centered on the bee
+        // Note the ! operate after camera. SKScene's camera
+        // is an optional, but we know it is there since we assigned
+        // it above in the didMove function. We can tell
+        // Swift that we know it can unwrap this value by using
+        // the ! operator after the property name.
+        self.camera!.position = bee.position
+    }
+    
+    func addTheFlyingBee() {
         // create our bee sprite
         // Note: Remove all prior arguments from this line:
-        let bee = SKSpriteNode()
         bee.position = CGPoint(x: 250, y: 250)
         bee.size = CGSize(width: 28, height: 24)
         self.addChild(bee)
