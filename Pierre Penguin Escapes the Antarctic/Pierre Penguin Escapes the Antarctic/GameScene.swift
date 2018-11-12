@@ -16,31 +16,50 @@ class GameScene: SKScene {
         // corner, regardless of any other settings:
         self.anchorPoint = .zero
         
-        // Instantiate a constant, mySprite, instance of SKSpriteNode
-        // The SKSpriteNode constructor can set color and size
-        // Note: UIColor is a UIKit class with built-in color presets
-        // Note: CGSize is a type we use to set node sizes
-        let mySprite = SKSpriteNode(color: .blue, size: CGSize(width: 50, height: 50))
+        // set the scene's background to a nice sky blue
+        // Note: UIColor uses a scale from 0 to 1 for its colors
+        self.backgroundColor = UIColor(red: 0.4, green: 0.6, blue: 0.95, alpha: 1.0)
         
-        // Assign our sprite a position in points, relative to its
-        // parent node (in this case, the scene)
-        mySprite.position = CGPoint(x: 150, y: 150)
+        // create our bee sprite
+        // Note: Remove all prior arguments from this line:
+        let bee = SKSpriteNode()
+        bee.position = CGPoint(x: 250, y: 250)
+        bee.size = CGSize(width: 28, height: 24)
+        self.addChild(bee)
         
-        // Finally, we need to add our sprite node into the node tree.
-        // Call the SKScene's addChild function to add the node
-        // Note: In Swift, 'self' is an automatic property
-        // on any type instance, exactly equal to the instance itself
-        // so in this case, it referes to the GameScene instance
-        self.addChild(mySprite)
+        // Find our new bee texture atlas
+        let beeAtlas = SKTextureAtlas(named: "Enemies")
         
-        // Create a new constant for our action instance
-        // Use the move action to provide a goal position for a node
-        // SpriteKit will tween to the new position over the course of the duration, in this case 5 seconds
-        let demoAction = SKAction.move(to: CGPoint(x: 300, y: 150), duration: 3)
-        let scaleAction = SKAction.scale(to: 4, duration: 3)
-        let rotateAction = SKAction.rotate(byAngle: 5, duration: 3)
-        let actionGroup = SKAction.group([demoAction, scaleAction, rotateAction])
-        let actionSequence = SKAction.sequence([demoAction, scaleAction, rotateAction])
-        mySprite.run(actionSequence)
+        // Grab the two bee frame from the texture atlas in an array
+        // Note: Check out the syntax explicitly declaring beeFrames
+        // as an array of SKTextures. This is not strictly necessary,
+        // but it makes the intent of the code more readable, so I
+        // chose to include the explicit type declaration here:
+        let beeFrames: [SKTexture] = [beeAtlas.textureNamed("bee"), beeAtlas.textureNamed("bee-fly")]
+        
+        // Create a new SKAction to animate between the frames once.
+        let flyAction = SKAction.animate(with: beeFrames, timePerFrame: 0.14)
+        
+        // Create an SKActino to run the flyAction repeatedly
+        let beeAction = SKAction.repeatForever(flyAction)
+        
+        // Instruct our bee to run the final repeat action:
+        bee.run(beeAction)
+        
+        // Set up new actions to move our bee back and forth:
+        let pathLeft = SKAction.moveBy(x: -200, y: -10, duration: 2)
+        let pathRight = SKAction.moveBy(x: 200, y: 10, duration: 2)
+        
+        // These two scaleX actions flip the texture back and forth
+        // We will use these to turn the bee to face left and right
+        let flipTextureNegative = SKAction.scaleX(to: -1, duration: 0)
+        let flipTexturePositive = SKAction.scaleX(to: 1, duration: 0)
+        
+        // Combine actions into a cohesive flight sequence for our bee
+        let flightOfBee = SKAction.sequence([pathLeft, flipTextureNegative, pathRight, flipTexturePositive])
+        
+        // Create a looping action that will repeat forever
+        let neverEndingFlight = SKAction.repeatForever(flightOfBee)
+        bee.run(neverEndingFlight)
     }
 }
