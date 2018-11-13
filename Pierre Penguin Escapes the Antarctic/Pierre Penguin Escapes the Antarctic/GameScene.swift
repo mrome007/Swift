@@ -61,6 +61,9 @@ class GameScene: SKScene {
         
         // Add the ground node to the scene:
         self.addChild(ground)
+        
+        bee2.physicsBody?.mass = 0.1
+        bee2.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
     }
     
     override func didSimulatePhysics() {
