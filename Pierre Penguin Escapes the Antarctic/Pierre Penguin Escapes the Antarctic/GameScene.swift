@@ -49,7 +49,7 @@ class GameScene: SKScene {
         // Position X: Negative on screen width
         // Positoin Y: 150 above the bottom (remember the top left
         // anchor point).
-        ground.position = CGPoint(x: -self.size.width * 2, y: 150)
+        ground.position = CGPoint(x: -self.size.width * 2, y: 30)
         
         // Set the ground width to 3x the width of the screen
         // The height can be 0, our child nodes will create the height
@@ -62,8 +62,11 @@ class GameScene: SKScene {
         // Add the ground node to the scene:
         self.addChild(ground)
         
-        bee2.physicsBody?.mass = 0.1
-        bee2.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -5)
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        player.update()
     }
     
     override func didSimulatePhysics() {
@@ -74,5 +77,31 @@ class GameScene: SKScene {
         // Swift that we know it can unwrap this value by using
         // the ! operator after the property name.
         self.camera!.position = player.position
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            // Find the location of the touch:
+            let location = touch.location(in: self)
+            
+            // Locate the node at this location:
+            let nodeTouched = atPoint(location)
+            
+            // Attempt to downcast the node to the GameSprite protocol
+            if let gameSprite = nodeTouched as? GameSprite {
+                // If this node adhere to GameSprite, call onTap:
+                gameSprite.onTap()
+            }
+        }
+        
+        player.startFlapping()
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        player.stopFlapping()
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        player.stopFlapping()
     }
 }
