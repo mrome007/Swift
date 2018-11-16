@@ -33,16 +33,105 @@ class BinarySearchTree {
         insert(&root, data)
     }
     
-    private func printTree(_ node: inout TreeNode?) {
+    private func printTree(_ node: TreeNode?) {
         if let n = node {
-            printTree(&n.left)
+            printTree(n.left)
             let num: Int = n.data
             print(num)
-            printTree(&n.right)
+            printTree(n.right)
         }
     }
     
     public func printTree() {
-        printTree(&root)
+        printTree(root)
+    }
+    
+    private func contains(_ node: TreeNode?, _ data: Int) -> Bool {
+        if let n = node {
+            if n.data == data {
+                return true
+            }
+            else if data < n.data {
+                return contains(n.left, data)
+            }
+            else {
+                return contains(n.right, data)
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
+    public func contains(_ data: Int) -> Bool {
+        return contains(root, data)
+    }
+    
+    private func findMin(_ node: TreeNode?) -> Int {
+        if let n = node {
+            if let nleft = n.left {
+                return findMin(nleft)
+            }
+            else {
+                return n.data
+            }
+        }
+        
+        return -1
+    }
+    
+    public func findMin() -> Int {
+        return findMin(root)
+    }
+    
+    private func findMax(_ node: TreeNode?) -> Int {
+        if let n = node {
+            if let nRight = n.right {
+                return findMax(nRight)
+            }
+            else {
+                return n.data
+            }
+        }
+        
+        return -1
+    }
+    
+    public func findMax() -> Int {
+        return findMax(root)
+    }
+    
+    private func findMin(_ node: TreeNode?) -> TreeNode? {
+        if let n = node {
+            if let nleft = n.left {
+                return findMin(nleft)
+            }
+            else {
+                return n
+            }
+        }
+        
+        return nil
+    }
+    
+    public func findMinNode() -> TreeNode? {
+        return findMin(root)
+    }
+    
+    private func findMax(_ node: TreeNode?) -> TreeNode? {
+        if let n = node {
+            if let nRight = n.right {
+                return findMax(nRight)
+            }
+            else {
+                return n
+            }
+        }
+        
+        return nil
+    }
+    
+    public func findMaxNode() -> TreeNode? {
+        return findMax(root)
     }
 }
