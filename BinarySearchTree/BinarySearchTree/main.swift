@@ -8,5 +8,15 @@
 
 import Foundation
 
-print("Hello, World!")
+let bst: BinarySearchTree = BinarySearchTree()
+
+bst.insert(5)
+bst.insert(4)
+bst.insert(7)
+bst.insert(9)
+bst.insert(1)
+bst.insert(12)
+bst.insert(3)
+
+bst.printTree()
 

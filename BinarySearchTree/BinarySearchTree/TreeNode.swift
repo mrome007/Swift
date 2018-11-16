@@ -19,7 +19,7 @@ class TreeNode {
         data = 0
     }
     
-    init(_ dat: Int, _ lef: TreeNode, _ rig: TreeNode) {
+    init(_ dat: Int, _ lef: TreeNode?, _ rig: TreeNode?) {
         data = dat
         left = lef
         right = rig
