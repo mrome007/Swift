@@ -34,3 +34,7 @@ ds.insert(2)
 ds.insert(3)
 
 ds.printList()
+
+ds.remove(ds.head)
+print()
+ds.printList()

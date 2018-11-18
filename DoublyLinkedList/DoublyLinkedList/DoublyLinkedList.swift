@@ -9,8 +9,8 @@
 import Foundation
 
 class DoublyLinkedList {
-    private var head: Node?
-    private var tail: Node?
+    var head: Node?
+    var tail: Node?
     
     init() {
         head = nil
@@ -36,12 +36,35 @@ class DoublyLinkedList {
         }
     }
     
-    func remove(_ cur: Node) {
-        
+    func remove(_ cur: Node?) {
+        if let h = head, let t = tail {
+            if let c = cur {
+                if h === t {
+                    head = nil
+                    tail = nil
+                    return
+                }
+                
+                let next: Node! = c.next
+                let prev: Node! = c.prev
+                
+                if c === head {
+                    head = next
+                }
+                
+                if c === tail {
+                    tail = prev
+                }
+                
+                prev.next = next
+                next.prev = prev
+            }
+        }
     }
     
     func printList() {
         if var cur = head, let end = tail {
+            
             while true {
                 
                 let data: Int = cur.data
