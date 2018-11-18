@@ -36,5 +36,39 @@ ds.insert(3)
 ds.printList()
 
 ds.remove(ds.head)
+ds.remove(ds.head)
+ds.remove(ds.head)
+ds.remove(ds.head)
+ds.remove(ds.head)
+ds.remove(ds.head)
+ds.remove(ds.head)
 print()
 ds.printList()
+
+func josephusProblem(_ m: Int, _ n: Int) -> Int {
+    let js = DoublyLinkedList()
+    for i in 1...n {
+        js.insert(i)
+    }
+    
+    var pass = 0
+    var cur: Node! = js.head
+    while js.size != 1 {
+        if pass == m {
+            pass = 0
+            let next = cur.next
+            js.remove(cur)
+            cur = next
+        }
+        else {
+            cur = cur.next
+            pass += 1
+        }
+    }
+    
+    let result: Int = js.head!.data
+    return result
+}
+
+print("Josephus Problem")
+print(josephusProblem(2, 5))

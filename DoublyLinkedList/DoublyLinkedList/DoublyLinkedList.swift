@@ -11,14 +11,17 @@ import Foundation
 class DoublyLinkedList {
     var head: Node?
     var tail: Node?
+    var size: Int
     
     init() {
         head = nil
         tail = nil
+        size = 0
     }
     
     func insert(_ data: Int) {
         let newNode: Node = Node(data, nil, nil)
+        size += 1
         
         if let h = head, let t = tail {
             t.next = newNode
@@ -39,6 +42,8 @@ class DoublyLinkedList {
     func remove(_ cur: Node?) {
         if let h = head, let t = tail {
             if let c = cur {
+                size -= 1
+                
                 if h === t {
                     head = nil
                     tail = nil
