@@ -12,6 +12,10 @@ class Ground: SKSpriteNode, GameSprite {
     var textureAtlas: SKTextureAtlas = SKTextureAtlas(named: "Environment")
     var initialSize: CGSize = CGSize.zero
     
+    var jumpWidth = CGFloat()
+    // Note the instantiation value of 1 here:
+    var jumpCount = CGFloat(1)
+    
     // This function tiles the ground texture across the width
     // of the Ground node. We will call it from our GameScene.
     func createChildren() {
@@ -47,8 +51,24 @@ class Ground: SKSpriteNode, GameSprite {
         let pointTopLeft = CGPoint(x: 0, y: 0)
         let pointTopRight = CGPoint(x: size.width, y: 0)
         self.physicsBody = SKPhysicsBody(edgeFrom: pointTopLeft, to: pointTopRight)
+        
+        // Save the width of one-third of the children nodes
+        jumpWidth = tileSize.width * floor(tileCount / 3)
     }
     
+    func checkForReposition(playerProgress: CGFloat) {
+        // The ground needs to jump forward
+        // every time the player has moved this distance:
+        let groundJumpPosition = jumpWidth * jumpCount
+        
+        if playerProgress >= groundJumpPosition {
+            // The player has moved past the jump position!
+            // Move the ground forward:
+            self.position.x += jumpWidth
+            // Add one to the jump count:
+            jumpCount += 1
+        }
+    }
     func onTap() {
         
     }

@@ -102,6 +102,8 @@ class Player : SKSpriteNode, GameSprite {
         if self.physicsBody!.velocity.dy > 300 {
             self.physicsBody!.velocity.dy = 30
         }
+        
+        self.physicsBody?.velocity.dx = 200
     }
     
     func startFlapping() {

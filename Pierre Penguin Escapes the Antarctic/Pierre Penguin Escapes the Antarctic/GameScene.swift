@@ -19,6 +19,10 @@ class GameScene: SKScene {
     // (Make sure to remove the old bee declaration below)
     let player = Player()
     let ground = Ground()
+    var screenCenterY = CGFloat()
+    
+    let initialPlayerPosition = CGPoint(x: 150, y: 250)
+    var playerProgress = CGFloat()
     
     override func didMove(to view: SKView) {
         // Make the scene position from its lower left
@@ -33,7 +37,7 @@ class GameScene: SKScene {
         self.camera = cam
         
         // Position the player:
-        player.position = CGPoint(x: 150, y: 250)
+        player.position = initialPlayerPosition
         self.addChild(player)
         
         let bee2 = Bee()
@@ -63,6 +67,7 @@ class GameScene: SKScene {
         self.addChild(ground)
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -5)
+        screenCenterY = self.size.height / 2
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -70,13 +75,27 @@ class GameScene: SKScene {
     }
     
     override func didSimulatePhysics() {
-        // Keep the camera centered on the bee
-        // Note the ! operate after camera. SKScene's camera
-        // is an optional, but we know it is there since we assigned
-        // it above in the didMove function. We can tell
-        // Swift that we know it can unwrap this value by using
-        // the ! operator after the property name.
-        self.camera!.position = player.position
+        // Keep the camera locked at mid screen by default:
+        var cameraYPos = screenCenterY
+        cam.yScale = 1
+        cam.xScale = 1
+        
+        if player.position.y > screenCenterY {
+            cameraYPos = player.position.y
+            
+            // Scale out the camera as they go higher:
+            let percentOfMaxHeight = (player.position.y - screenCenterY) / (player.maxHeight - screenCenterY)
+            let newScale = 1 + percentOfMaxHeight
+            cam.yScale = newScale
+            cam.xScale = newScale
+        }
+        
+        // Move the camera for our adjustment:
+        self.camera!.position = CGPoint(x: player.position.x, y: cameraYPos)
+        
+        playerProgress = player.position.x - initialPlayerPosition.x
+        // check to see if the ground should jump forward:
+        ground.checkForReposition(playerProgress: playerProgress)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
