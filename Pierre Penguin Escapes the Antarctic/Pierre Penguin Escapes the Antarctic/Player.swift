@@ -100,7 +100,7 @@ class Player : SKSpriteNode, GameSprite {
         // This prevents him from gaining enough momentum to shoot
         // over our max height. We bend the physics for gameplay:
         if self.physicsBody!.velocity.dy > 300 {
-            self.physicsBody!.velocity.dy = 30
+            self.physicsBody!.velocity.dy = 300
         }
         
         self.physicsBody?.velocity.dx = 200
