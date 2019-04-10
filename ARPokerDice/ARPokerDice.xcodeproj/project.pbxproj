@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F0EFCDD225D914A00527B6A /* PokerDice.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F0EFCDC225D914A00527B6A /* PokerDice.scnassets */; };
 		9F3D127022599B580040ED79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3D126F22599B580040ED79 /* AppDelegate.swift */; };
-		9F3D127222599B580040ED79 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3D127122599B580040ED79 /* art.scnassets */; };
 		9F3D127422599B580040ED79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3D127322599B580040ED79 /* ViewController.swift */; };
 		9F3D127722599B580040ED79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3D127522599B580040ED79 /* Main.storyboard */; };
 		9F3D127922599B590040ED79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3D127822599B590040ED79 /* Assets.xcassets */; };
@@ -16,9 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F0EFCDC225D914A00527B6A /* PokerDice.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = PokerDice.scnassets; sourceTree = "<group>"; };
 		9F3D126C22599B580040ED79 /* ARPokerDice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPokerDice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F3D126F22599B580040ED79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9F3D127122599B580040ED79 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		9F3D127322599B580040ED79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9F3D127622599B580040ED79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F3D127822599B590040ED79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,8 +56,8 @@
 		9F3D126E22599B580040ED79 /* ARPokerDice */ = {
 			isa = PBXGroup;
 			children = (
+				9F0EFCDC225D914A00527B6A /* PokerDice.scnassets */,
 				9F3D126F22599B580040ED79 /* AppDelegate.swift */,
-				9F3D127122599B580040ED79 /* art.scnassets */,
 				9F3D127322599B580040ED79 /* ViewController.swift */,
 				9F3D127522599B580040ED79 /* Main.storyboard */,
 				9F3D127822599B590040ED79 /* Assets.xcassets */,
@@ -125,7 +125,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F3D127222599B580040ED79 /* art.scnassets in Resources */,
+				9F0EFCDD225D914A00527B6A /* PokerDice.scnassets in Resources */,
 				9F3D127C22599B590040ED79 /* LaunchScreen.storyboard in Resources */,
 				9F3D127922599B590040ED79 /* Assets.xcassets in Resources */,
 				9F3D127722599B580040ED79 /* Main.storyboard in Resources */,
