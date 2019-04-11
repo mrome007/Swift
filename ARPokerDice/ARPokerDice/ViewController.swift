@@ -13,7 +13,15 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
     
+    @IBAction func startButtonPressed(_ sender: Any) {
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +37,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
+        statusLabel.text = "Greetings! :]"
     }
     
     override func viewWillAppear(_ animated: Bool) {
